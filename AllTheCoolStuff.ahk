@@ -12,13 +12,9 @@ MODE = %MODE_JAVA%
 
 ; =======================================
 
-F9::
-	MODE = %MODE_JAVA%
-return
-
-F10::
-	MODE = %MODE_PYTHON%
-return
+; if the command is a single line, no need for return statements
+F9::MODE = %MODE_JAVA%
+F10::MODE = %MODE_PYTHON%
 
 ; =======================================
 	
@@ -32,19 +28,18 @@ return
 	Run, %browser% https://cpt2l3support:8443/source/
 return
 
+; =======================================
+
 ; Easy Sysout with value (Ctrl + Alt + s)
 ; Copy the variable name before executing
 ; System.out.println("tempVar:" + tempVar);
 ^!s::
 	if (MODE == MODE_JAVA) {
-		Send, System.out.println("
-		Send ^v
-		Send {:}"{+}
-		Send ^v
-		Send );
+		Send, System.out.println("^v{:}"{+}^v);
 		undoNecessary = 7
 	} else if (MODE == MODE_PYTHON) {
-		Send, TODO
+		Send, print('^v{:}'{+}str(^v))
+		undoNecessary = 4
 	}
 return
 
@@ -61,15 +56,10 @@ return
 ; Easy if with contents (Ctrl + Alt + f)
 ; Highlight section before doing command
 ^!f::
-	Send ^x
-	Send, if(true)
-	Send {enter}
-	SendRaw {
-	SendRaw }
-	Send {left 1}
-	Send {enter}
-	Send ^v
-	undoNecessary = 8
+	Send ^xif(true){enter}
+	SendRaw {}
+	Send {left 1}{enter}^v
+	undoNecessary = 9
 return
 
 ; Smarter Undo (Ctrl + Alt + z)
@@ -78,3 +68,5 @@ return
 		Send ^z
 	}
 return
+
+; =======================================
