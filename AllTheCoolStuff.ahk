@@ -53,6 +53,14 @@ return
 	undoNecessary = 6
 return
 
+; Delete Whole Line (Ctrl + d)
+^d::
+	send {shift down}{home down}
+	Send {delete}
+	send {shift up}{home up}
+	undoNecessary = 1
+return
+
 ; Easy if with contents (Ctrl + Alt + f)
 ; Highlight section before doing command
 ^!f::
@@ -62,11 +70,43 @@ return
 	undoNecessary = 9
 return
 
+; Easy surround with {} (Ctrl + Alt + [)
+; Highlight section before doing command
+^![::
+	Send ^x
+	SendRaw {
+	Send ^v
+	SendRaw }
+	undoNecessary = 4
+return
+
+; Easy surround with [] (Ctrl + Alt + ])
+; Highlight section before doing command
+^!]::
+	Send ^x
+	SendRaw [
+	Send ^v
+	SendRaw ]
+	undoNecessary = 4
+return
+
+; Easy surround with () (Ctrl + Alt + ])
+; Highlight section before doing command
+^!9::
+	Send ^x
+	SendRaw (
+	Send ^v
+	SendRaw )
+	undoNecessary = 4
+return
+
 ; Smarter Undo (Ctrl + Alt + z)
 ^!z::
 	loop, %undoNecessary% {
 		Send ^z
 	}
 return
+
+
 
 ; =======================================
