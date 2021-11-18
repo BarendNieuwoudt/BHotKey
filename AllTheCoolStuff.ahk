@@ -53,14 +53,6 @@ return
 	undoNecessary = 6
 return
 
-; Delete Whole Line (Ctrl + d)
-^d::
-	send {shift down}{home down}
-	Send {delete}
-	send {shift up}{home up}
-	undoNecessary = 1
-return
-
 ; Easy if with contents (Ctrl + Alt + f)
 ; Highlight section before doing command
 ^!f::
