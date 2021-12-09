@@ -23,9 +23,14 @@ F10::MODE = %MODE_PYTHON%
 	Run, %browser% http://cpt2reports01.am.tsacorp.com:9090/summary/Realtime-Framework?search=barend
 return
 
-; DBAT Report Page (Ctrl + Alt + Numpad2)
+; Grock (Ctrl + Alt + Numpad2)
 ^!Numpad2::
 	Run, %browser% https://cpt2l3support:8443/source/
+return
+
+; Grock + Search Term (Ctrl + Alt + Numpad3)
+^!Numpad3::
+	Run, %browser% https://cpt2l3support:8443/source/search?q=%clipboard%&defs=&refs=&path=&hist=&type=&project=realtime_5_x
 return
 
 ; =======================================
@@ -59,6 +64,18 @@ return
 	Send ^xif(true){enter}
 	SendRaw {}
 	Send {left 1}{enter}^v
+	undoNecessary = 9
+return
+
+; Easy if with null check + contents (Ctrl + Alt + g)
+; copy variable name first, then
+; Highlight section before doing command
+^!g::
+	var := clipboard
+	Send ^xif(%var%{space}{!}{=}{space}null){enter}
+	SendRaw {}
+	Send {left 1}{enter}^v
+	clipboard := var
 	undoNecessary = 9
 return
 
