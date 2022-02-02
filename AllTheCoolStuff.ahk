@@ -67,6 +67,15 @@ return
 	undoNecessary = 9
 return
 
+; Extract To Constant (Ctrl + Alt + t)
+; Highlight section before doing command
+^!t::
+	Send {shift Down}{F10}{shift Up}tt{enter}a
+	Sleep 300
+	Send {enter}
+	undoNecessary = 1
+return
+
 ; Easy if with null check + contents (Ctrl + Alt + g)
 ; copy variable name first, then
 ; Highlight section before doing command
@@ -115,7 +124,5 @@ return
 		Send ^z
 	}
 return
-
-
 
 ; =======================================
