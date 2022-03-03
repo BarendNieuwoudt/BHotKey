@@ -67,15 +67,6 @@ return
 	undoNecessary = 9
 return
 
-; Extract To Constant (Ctrl + Alt + t)
-; Highlight section before doing command
-^!t::
-	Send {shift Down}{F10}{shift Up}tt{enter}a
-	Sleep 300
-	Send {enter}
-	undoNecessary = 1
-return
-
 ; Easy if with null check + contents (Ctrl + Alt + g)
 ; copy variable name first, then
 ; Highlight section before doing command
@@ -86,6 +77,18 @@ return
 	Send {left 1}{enter}^v
 	clipboard := var
 	undoNecessary = 9
+return
+
+; "SELECT * FROM " (Ctrl + Alt + i)
+^!i::
+	Send SELECT{space}*{space}FROM{space}
+	undoNecessary = 1
+return
+
+; "DELETE FROM " (Ctrl + Alt + o)
+^!o::
+	Send DELETE{space}FROM{space}
+	undoNecessary = 1
 return
 
 ; Easy surround with {} (Ctrl + Alt + [)
@@ -108,7 +111,7 @@ return
 	undoNecessary = 4
 return
 
-; Easy surround with () (Ctrl + Alt + ])
+; Easy surround with () (Ctrl + Alt + 9)
 ; Highlight section before doing command
 ^!9::
 	Send ^x
