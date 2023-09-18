@@ -3,5 +3,9 @@
     "www.notion.so",
     "www.github.com",
     "www.docs.google.com/spreadsheets"
+  ],
+  "programs": [
+    "C:/Program Files/Google/Chrome/Application/chrome.exe",
+	"C:/Program Files/Notepad++/notepad++.exe"
   ]
 }
