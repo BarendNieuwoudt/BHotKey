@@ -12,5 +12,8 @@
     "1" : "Templates/JavaNullCheck.txt",
     "2" : "Templates/JavaPrintLineVar.txt",
     "3" : "Templates/JavaPrintLine.txt"
-  }
+  },
+  "scripts": [
+	"Scripts/MediaController.ahk"
+  ]
 }

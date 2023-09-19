@@ -5,6 +5,8 @@
 configText := FileRead("config.json")
 config := Jxon_Load(&configText)
 
+ReloadScripts()
+
 ; URL Hotkeys = ctrl + alt + Numpad
 Loop config["bookmarks"].Length
 	Hotkey("^!Numpad" A_Index, (*) => HandleBookmarkLaunch(subStr(A_ThisHotKey, 9)))
@@ -49,4 +51,12 @@ HandleTextReplace(key) {
 }
 
 ; Reload = ctrl + alt + r
-^!r::Reload
+^!r::ReloadScripts(true)
+
+ReloadScripts(reloadCurrent := false) {
+	if reloadCurrent {
+		Reload
+	}
+	Loop config["scripts"].Length
+		Run((A_WorkingDir "/") config["scripts"][A_Index])
+}
