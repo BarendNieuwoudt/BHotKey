@@ -7,12 +7,22 @@ config := Jxon_Load(&configText)
 
 ; URL Hotkeys = ctrl + alt + Numpad
 Loop config["bookmarks"].Length
-	Hotkey("^!Numpad" A_Index, (*) => Run(config["bookmarks"][subStr(A_ThisHotKey, 9)]))
+	Hotkey("^!Numpad" A_Index, (*) => HandleBookmarkLaunch(subStr(A_ThisHotKey, 9)))
+
+; Don't attempt to launch from an invalid index	
+HandleBookmarkLaunch(index) {
+	if (index <= config["bookmarks"].Length) {
+		Run(config["bookmarks"][index])
+	} else {
+		return
+	}
+}
 	
 ; Program Hotkeys = ctrl + alt + Func
 Loop config["programs"].Length
 	Hotkey("^!F" A_Index, (*) => HandleProgramLaunch(config["programs"][subStr(A_ThisHotKey, 4)]))
-	
+
+; Active existing instances before opening new ones	
 HandleProgramLaunch(appPath) {
 	appName := StrSplit(appPath, "/").Pop()
 	if ProcessExist(appName) { 
