@@ -22,5 +22,21 @@ HandleProgramLaunch(appPath) {
 	}
 }
 
+; Text Replacement Hotkeys = ctrl + alt + 'key'
+for key in config["textReplaceTemplates"] {
+	Hotkey("^!" key, (*) => HandleTextReplace(subStr(A_ThisHotKey, 3)))
+}
+
+HandleTextReplace(key) {
+	textTemplate := FileRead(config["textReplaceTemplates"][key])
+	currClip := A_Clipboard
+	A_Clipboard := ""
+	Send "^c"
+	ClipWait
+	A_Clipboard := StrReplace(StrReplace(textTemplate, "%clip%", currClip), "%high%", A_Clipboard)
+	Send "^v"
+	; Pasting is more reliable and requires only a single undo, compared to 'SendText'.
+}
+
 ; Reload = ctrl + alt + r
 ^!r::Reload

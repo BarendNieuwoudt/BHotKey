@@ -6,6 +6,11 @@
   ],
   "programs": [
     "C:/Program Files/Google/Chrome/Application/chrome.exe",
-	"C:/Program Files/Notepad++/notepad++.exe"
-  ]
+    "C:/Program Files/Notepad++/notepad++.exe"
+  ],
+  "textReplaceTemplates": {
+    "1" : "Templates/JavaNullCheck.txt",
+    "2" : "Templates/JavaPrintLineVar.txt",
+    "3" : "Templates/JavaPrintLine.txt"
+  }
 }
