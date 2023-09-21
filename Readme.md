@@ -69,3 +69,8 @@ In the following example, the 1st template is assigned to `n`, the hotkey will b
         }
     }
 
+### --- Styler --------------------
+
+Very much a work in progress.
+
+v1 was designed with Dark Mode and the Obsidian theme in mind.
