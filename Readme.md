@@ -20,8 +20,9 @@ The 1st item will be assigned to `ctrl + alt + F1`, the 2nd item will be assigne
 
 _Note:_ The path must be absolute, and have forward slashes `/` and NOT back slashes `\`.
 
-If a program is already running, the existing instance will be activated, otherwise a new instance will be opened.
+_Note:_ The Path must be to an '.exe', linking to a shortcut will open a new instance every time the key is activated.
 
+If a program is already running, the existing instance will be activated, otherwise a new instance will be opened.
 
 ### --- Text Replacement Templates ---
 
